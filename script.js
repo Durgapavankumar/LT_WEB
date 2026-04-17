@@ -436,8 +436,7 @@ function buildBrandCarousel(){
       <div class="bp-card__overlay" style="background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,${b.color}dd 100%);"></div>
       <div class="bp-card__logo-wrap">
         <img src="https://logo.clearbit.com/${b.domain}" alt="${b.name}" loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <span class="bp-fallback" style="display:none">${initials}</span>
+             onerror="this.closest('.bp-card__logo-wrap').style.display='none'">
       </div>
       <div class="bp-card__info">
         <div class="bp-card__name">${b.name}</div>
