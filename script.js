@@ -68,22 +68,125 @@ const CAT_COLORS = {
 /* ── PRODUCT BOTTLE IMAGE POOLS (Unsplash stable IDs, portrait crop) ── */
 const BASE = 'https://images.unsplash.com/';
 const FMT  = '?auto=format&fit=crop&w=400&h=520&q=80';
+const FMT_SQ = '?auto=format&fit=crop&w=200&h=200&q=80';
+
 const IMG_POOL = {
-  beer:           ['photo-1535958636474-b021ee887b13','photo-1436076863939-06870fe779c2','photo-1608270586620-248524c67de9','photo-1569529465841-dfecdab7503b','photo-1485824890521-7ef09b2d89c7'],
-  wine_red:       ['photo-1558618666-fcd25c85cd64','photo-1474722883778-792e7990302f','photo-1510812431401-41d2bd2722f3'],
-  wine_white:     ['photo-1510812431401-41d2bd2722f3','photo-1474722883778-792e7990302f','photo-1558618666-fcd25c85cd64'],
-  wine_rose:      ['photo-1474722883778-792e7990302f','photo-1558618666-fcd25c85cd64','photo-1510812431401-41d2bd2722f3'],
-  wine_sparkling: ['photo-1544145945-f90425340c7e','photo-1474722883778-792e7990302f','photo-1510812431401-41d2bd2722f3'],
-  whiskey:        ['photo-1527281400683-1aae777175f8','photo-1569529465841-dfecdab7503b','photo-1527281400683-1aae777175f8'],
-  vodka:          ['photo-1551538827-9c037cb4f32a','photo-1569529465841-dfecdab7503b','photo-1551538827-9c037cb4f32a'],
-  tequila:        ['photo-1514362545857-3bc16c4c7d1b','photo-1551538827-9c037cb4f32a','photo-1569529465841-dfecdab7503b'],
-  rum:            ['photo-1569529465841-dfecdab7503b','photo-1551538827-9c037cb4f32a','photo-1527281400683-1aae777175f8'],
-  seltzer:        ['photo-1551538827-9c037cb4f32a','photo-1436076863939-06870fe779c2','photo-1485824890521-7ef09b2d89c7'],
-  shots:          ['photo-1527281400683-1aae777175f8','photo-1551538827-9c037cb4f32a','photo-1514362545857-3bc16c4c7d1b'],
+  beer: [
+    'photo-1535958636474-b021ee887b13','photo-1436076863939-06870fe779c2',
+    'photo-1485824890521-7ef09b2d89c7','photo-1566633806827-5af151680d98',
+    'photo-1558642452-9d2a7deb7f62','photo-1574045330914-a5cd0b8eac01',
+    'photo-1532634939-e9a18c16e7ee','photo-1613579588764-83e2b29fb6ba',
+    'photo-1608270586620-248524c67de5','photo-1510626176961-4b57d4fbad03',
+    'photo-1567620905732-2d1ec7ab7445','photo-1590086782957-93c06ef21604',
+  ],
+  wine_red: [
+    'photo-1558618666-fcd25c85cd64','photo-1474722883778-792e7990302f',
+    'photo-1510812431401-41d2bd2722f3','photo-1553361371-9b22f78e8b1d',
+    'photo-1567529684892-c3a0b3b3e7b0','photo-1592840496694-26d035b52b48',
+    'photo-1584916201218-f4242ceb4809','photo-1506377247377-2a5b3b417ebb',
+    'photo-1547595628-c61a29f496f0','photo-1517701604599-bb29b565090c',
+  ],
+  wine_white: [
+    'photo-1510812431401-41d2bd2722f3','photo-1474722883778-792e7990302f',
+    'photo-1553361371-9b22f78e8b1d','photo-1558618666-fcd25c85cd64',
+    'photo-1506377247377-2a5b3b417ebb','photo-1592840496694-26d035b52b48',
+    'photo-1547595628-c61a29f496f0','photo-1517701604599-bb29b565090c',
+    'photo-1584916201218-f4242ceb4809','photo-1567529684892-c3a0b3b3e7b0',
+  ],
+  wine_rose: [
+    'photo-1474722883778-792e7990302f','photo-1558618666-fcd25c85cd64',
+    'photo-1510812431401-41d2bd2722f3','photo-1553361371-9b22f78e8b1d',
+    'photo-1592840496694-26d035b52b48','photo-1506377247377-2a5b3b417ebb',
+    'photo-1584916201218-f4242ceb4809','photo-1547595628-c61a29f496f0',
+  ],
+  wine_sparkling: [
+    'photo-1544145945-f90425340c7e','photo-1474722883778-792e7990302f',
+    'photo-1510812431401-41d2bd2722f3','photo-1558618666-fcd25c85cd64',
+    'photo-1553361371-9b22f78e8b1d','photo-1506377247377-2a5b3b417ebb',
+    'photo-1592840496694-26d035b52b48','photo-1547595628-c61a29f496f0',
+    'photo-1517701604599-bb29b565090c','photo-1584916201218-f4242ceb4809',
+  ],
+  whiskey: [
+    'photo-1527281400683-1aae777175f8','photo-1569529465841-dfecdab7503b',
+    'photo-1568644396922-5c3bfae12521','photo-1557766842-b0c2c31be58c',
+    'photo-1574020493-a-6fc9fada8b8','photo-1584208124-9e8e8b4c1b9b',
+    'photo-1547595628-c61a29f496f0','photo-1517701604599-bb29b565090c',
+    'photo-1553361371-9b22f78e8b1d','photo-1510812431401-41d2bd2722f3',
+    'photo-1551538827-9c037cb4f32a','photo-1514362545857-3bc16c4c7d1b',
+  ],
+  vodka: [
+    'photo-1551538827-9c037cb4f32a','photo-1569529465841-dfecdab7503b',
+    'photo-1527281400683-1aae777175f8','photo-1514362545857-3bc16c4c7d1b',
+    'photo-1544145945-f90425340c7e','photo-1474722883778-792e7990302f',
+    'photo-1558618666-fcd25c85cd64','photo-1510812431401-41d2bd2722f3',
+    'photo-1553361371-9b22f78e8b1d','photo-1506377247377-2a5b3b417ebb',
+    'photo-1547595628-c61a29f496f0','photo-1517701604599-bb29b565090c',
+  ],
+  tequila: [
+    'photo-1514362545857-3bc16c4c7d1b','photo-1551538827-9c037cb4f32a',
+    'photo-1569529465841-dfecdab7503b','photo-1527281400683-1aae777175f8',
+    'photo-1544145945-f90425340c7e','photo-1558618666-fcd25c85cd64',
+    'photo-1474722883778-792e7990302f','photo-1510812431401-41d2bd2722f3',
+    'photo-1553361371-9b22f78e8b1d','photo-1506377247377-2a5b3b417ebb',
+  ],
+  rum: [
+    'photo-1569529465841-dfecdab7503b','photo-1527281400683-1aae777175f8',
+    'photo-1551538827-9c037cb4f32a','photo-1514362545857-3bc16c4c7d1b',
+    'photo-1544145945-f90425340c7e','photo-1474722883778-792e7990302f',
+    'photo-1558618666-fcd25c85cd64','photo-1510812431401-41d2bd2722f3',
+    'photo-1553361371-9b22f78e8b1d','photo-1506377247377-2a5b3b417ebb',
+  ],
+  seltzer: [
+    'photo-1551538827-9c037cb4f32a','photo-1485824890521-7ef09b2d89c7',
+    'photo-1436076863939-06870fe779c2','photo-1535958636474-b021ee887b13',
+    'photo-1566633806827-5af151680d98','photo-1558642452-9d2a7deb7f62',
+    'photo-1574045330914-a5cd0b8eac01','photo-1532634939-e9a18c16e7ee',
+    'photo-1513558161293-cdaf765ed2fd','photo-1567620905732-2d1ec7ab7445',
+  ],
+  shots: [
+    'photo-1527281400683-1aae777175f8','photo-1551538827-9c037cb4f32a',
+    'photo-1514362545857-3bc16c4c7d1b','photo-1544145945-f90425340c7e',
+    'photo-1569529465841-dfecdab7503b','photo-1558618666-fcd25c85cd64',
+    'photo-1474722883778-792e7990302f','photo-1510812431401-41d2bd2722f3',
+  ],
 };
 function getProductImg(key, idx){
   const pool = IMG_POOL[key] || IMG_POOL.whiskey;
   return BASE + pool[idx % pool.length] + FMT;
+}
+
+/* ── CATEGORY CIRCLES DATA ───────────────────────────────── */
+const CATEGORY_CIRCLES = [
+  {key:'beer',    label:'Beer',          emoji:'🍺', img:'photo-1436076863939-06870fe779c2'},
+  {key:'wine',    label:'Wine',          emoji:'🍷', img:'photo-1558618666-fcd25c85cd64'},
+  {key:'whiskey', label:'Whiskey',       emoji:'🥃', img:'photo-1527281400683-1aae777175f8'},
+  {key:'vodka',   label:'Vodka',         emoji:'🍸', img:'photo-1551538827-9c037cb4f32a'},
+  {key:'tequila', label:'Tequila',       emoji:'🌵', img:'photo-1514362545857-3bc16c4c7d1b'},
+  {key:'rum',     label:'Rum',           emoji:'🍹', img:'photo-1569529465841-dfecdab7503b'},
+  {key:'seltzer', label:'Seltzers',      emoji:'🫧', img:'photo-1485824890521-7ef09b2d89c7'},
+  {key:'shots',   label:'Shots & Margs', emoji:'🥂', img:'photo-1544145945-f90425340c7e'},
+];
+
+function buildCategoryCircles(){
+  const grid = document.getElementById('shop-by-grid');
+  if(!grid) return;
+  grid.innerHTML = CATEGORY_CIRCLES.map(c => `
+    <div class="category-circle" id="circle-${c.key}" onclick="jumpToCategory('${c.key}')">
+      <div class="category-circle__img">
+        <img src="${BASE}${c.img}${FMT_SQ}" alt="${c.label}" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.style.background='#f4f5f7'">
+      </div>
+      <span class="category-circle__label">${c.emoji} ${c.label}</span>
+    </div>
+  `).join('');
+}
+
+function jumpToCategory(key){
+  switchTab(key);
+  document.getElementById('products')?.scrollIntoView({behavior:'smooth',block:'start'});
+  CATEGORY_CIRCLES.forEach(c=>{
+    document.getElementById('circle-'+c.key)?.classList.toggle('active', c.key===key);
+  });
 }
 
 /* ── PRODUCTS DATA ───────────────────────────────────────── */
@@ -454,6 +557,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initStoreStatus();
   initDealBanner();
   initHeroSlideshow();
+  buildCategoryCircles();
   buildBrandCarousel();
   buildTabs();
   initNav();
