@@ -65,6 +65,27 @@ const CAT_COLORS = {
   Champagne:'#d4af37',
 };
 
+/* ── PRODUCT BOTTLE IMAGE POOLS (Unsplash stable IDs, portrait crop) ── */
+const BASE = 'https://images.unsplash.com/';
+const FMT  = '?auto=format&fit=crop&w=400&h=520&q=80';
+const IMG_POOL = {
+  beer:           ['photo-1535958636474-b021ee887b13','photo-1436076863939-06870fe779c2','photo-1608270586620-248524c67de9','photo-1569529465841-dfecdab7503b','photo-1485824890521-7ef09b2d89c7'],
+  wine_red:       ['photo-1558618666-fcd25c85cd64','photo-1474722883778-792e7990302f','photo-1510812431401-41d2bd2722f3'],
+  wine_white:     ['photo-1510812431401-41d2bd2722f3','photo-1474722883778-792e7990302f','photo-1558618666-fcd25c85cd64'],
+  wine_rose:      ['photo-1474722883778-792e7990302f','photo-1558618666-fcd25c85cd64','photo-1510812431401-41d2bd2722f3'],
+  wine_sparkling: ['photo-1544145945-f90425340c7e','photo-1474722883778-792e7990302f','photo-1510812431401-41d2bd2722f3'],
+  whiskey:        ['photo-1527281400683-1aae777175f8','photo-1569529465841-dfecdab7503b','photo-1527281400683-1aae777175f8'],
+  vodka:          ['photo-1551538827-9c037cb4f32a','photo-1569529465841-dfecdab7503b','photo-1551538827-9c037cb4f32a'],
+  tequila:        ['photo-1514362545857-3bc16c4c7d1b','photo-1551538827-9c037cb4f32a','photo-1569529465841-dfecdab7503b'],
+  rum:            ['photo-1569529465841-dfecdab7503b','photo-1551538827-9c037cb4f32a','photo-1527281400683-1aae777175f8'],
+  seltzer:        ['photo-1551538827-9c037cb4f32a','photo-1436076863939-06870fe779c2','photo-1485824890521-7ef09b2d89c7'],
+  shots:          ['photo-1527281400683-1aae777175f8','photo-1551538827-9c037cb4f32a','photo-1514362545857-3bc16c4c7d1b'],
+};
+function getProductImg(key, idx){
+  const pool = IMG_POOL[key] || IMG_POOL.whiskey;
+  return BASE + pool[idx % pool.length] + FMT;
+}
+
 /* ── PRODUCTS DATA ───────────────────────────────────────── */
 const PRODUCTS = {
   beer: [
@@ -329,15 +350,17 @@ function renderProductGrid(key){
   const items=PRODUCTS[key]||[];
   if(!items.length){grid.innerHTML='<p style="color:var(--text-muted);text-align:center;grid-column:1/-1;padding:40px">Coming soon!</p>';return;}
   grid.innerHTML=items.map((p,idx)=>{
-    const initials=p.name.split(' ').map(w=>w[0]).join('').slice(0,3).toUpperCase();
+    const imgUrl = getProductImg(key, idx);
     const sizeBtns=p.sizes.map(s=>`<button class="size-btn" onclick="selectSize(this)">${s}</button>`).join('');
     return `
-    <div class="pci" style="border-top:3px solid ${p.color}">
-      <div class="pci__image" style="background:linear-gradient(135deg,${p.color}55,${p.color}22)">
-        <div class="logo-wrap">
-          <img src="https://logo.clearbit.com/${p.domain}" alt="${p.name}" loading="lazy"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <span class="logo-init" style="display:none">${initials}</span>
+    <div class="pci">
+      <div class="pci__img-wrap">
+        <img class="pci__img" src="${imgUrl}" alt="${p.name}" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,${p.color}88,${p.color}44)'">
+        <div class="pci__color-bar" style="background:${p.color}"></div>
+        <div class="pci__logo-badge">
+          <img src="https://logo.clearbit.com/${p.domain}" alt="" loading="lazy"
+               onerror="this.parentElement.style.display='none'">
         </div>
       </div>
       <div class="pci__body">
