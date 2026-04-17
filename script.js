@@ -509,18 +509,15 @@ function renderProductGrid(key){
       const sizeBtns = p.sizes.map(s=>`<button class="poster-size-btn" onclick="selectSize(this)">${s}</button>`).join('');
       return `
       <div class="poster-card">
-        <div class="poster-fallback" style="background:linear-gradient(160deg,${p.color}cc,${p.color}44)">
-          <span class="poster-fallback__name">${p.name}</span>
-        </div>
-        <div class="poster-img-wrap">
-          <img class="poster-img" src="${imgUrl}" alt="${p.name}" loading="lazy"
-               onerror="this.style.display='none'">
-        </div>
-        <div class="poster-overlay"></div>
         <div class="poster-bar" style="background:${p.color}"></div>
-        <div class="poster-logo">
-          <img src="https://logo.clearbit.com/${p.domain}" alt="" loading="lazy"
-               onerror="this.parentElement.style.display='none'">
+        <div class="poster-img-wrap" id="wrap-${key}-${idx}"
+             style="background:#f9f9fb">
+          <div class="poster-fallback" id="fb-${key}-${idx}"
+               style="background:linear-gradient(160deg,${p.color}dd,${p.color}66)">
+            ${p.name}
+          </div>
+          <img class="poster-img" src="${imgUrl}" alt="${p.name}" loading="lazy"
+               onerror="this.style.display='none';var fb=document.getElementById('fb-${key}-${idx}');if(fb){fb.style.display='flex';}">
         </div>
         <div class="poster-body">
           <div class="poster-name">${p.name}</div>
