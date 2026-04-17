@@ -541,9 +541,15 @@ function buildTabs(){
   const wineTabsEl=document.getElementById('wine-tabs');
   if(!catTabsEl)return;
 
-  catTabsEl.innerHTML=MAIN_TABS.map(t=>`
-    <button class="cat-tab${t.key===activeMain?' active':''}" onclick="switchTab('${t.key}')">${t.label}</button>
-  `).join('');
+  catTabsEl.innerHTML=MAIN_TABS.map(t=>{
+    const parts=t.label.split(' ');
+    const emoji=parts[0];
+    const label=parts.slice(1).join(' ');
+    return `<button class="cat-tab${t.key===activeMain?' active':''}" onclick="switchTab('${t.key}')">
+      <span class="cat-tab__emoji">${emoji}</span>
+      <span class="cat-tab__label">${label}</span>
+    </button>`;
+  }).join('');
 
   wineTabsEl.innerHTML=WINE_TABS.map(t=>`
     <button class="wine-tab${t.key===activeWine?' active':''}" onclick="switchWineTab('${t.key}')">${t.label}</button>
@@ -558,7 +564,7 @@ function buildTabs(){
 
 function switchTab(key){
   activeMain=key;
-  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.toggle('active',t.textContent.trim()===MAIN_TABS.find(x=>x.key===key)?.label));
+  document.querySelectorAll('.cat-tab').forEach((t,i)=>t.classList.toggle('active',MAIN_TABS[i]?.key===key));
   const wineTabsEl=document.getElementById('wine-tabs');
   const isWine=key==='wine';
   wineTabsEl.style.display=isWine?'flex':'none';
