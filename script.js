@@ -448,37 +448,94 @@ function buildBrandCarousel(){
   track.innerHTML=html;
 }
 
+/* ── CATEGORY BANNER CONFIG ──────────────────────────────── */
+const CAT_BANNER_IMG = {
+  beer:    'https://images.unsplash.com/photo-1436076863939-06870fe779c2?auto=format&fit=crop&w=900&q=80',
+  wine:    'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80',
+  whiskey: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=900&q=80',
+  vodka:   'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=80',
+  tequila: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=80',
+  rum:     'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=900&q=80',
+  seltzer: 'https://images.unsplash.com/photo-1485824890521-7ef09b2d89c7?auto=format&fit=crop&w=900&q=80',
+  shots:   'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=80',
+  wine_red:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80',
+  wine_white:'https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=900&q=80',
+  wine_rose:'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80',
+  wine_sparkling:'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=80',
+};
+
+function updateCatBanner(key){
+  let banner = document.getElementById('cat-banner');
+  if(!banner){
+    banner = document.createElement('div');
+    banner.id = 'cat-banner';
+    banner.className = 'cat-banner';
+    document.getElementById('product-grid').before(banner);
+  }
+  const tab = [...MAIN_TABS,...WINE_TABS].find(t=>t.key===key);
+  const label = tab ? tab.label.replace(/^[^\s]+ /,'') : key;
+  const emoji = tab ? tab.label.split(' ')[0] : '🍸';
+  const count = (PRODUCTS[key]||[]).length;
+  const img = CAT_BANNER_IMG[key] || CAT_BANNER_IMG.whiskey;
+  banner.innerHTML = `
+    <div class="cat-banner__bg" style="background-image:url('${img}')"></div>
+    <div class="cat-banner__body">
+      <div class="cat-banner__emoji">${emoji}</div>
+      <div class="cat-banner__label">${label}</div>
+      <div class="cat-banner__count">${count} products available</div>
+    </div>`;
+  banner.classList.remove('visible');
+  requestAnimationFrame(()=>banner.classList.add('visible'));
+}
+
 /* ── PRODUCT CATALOG ─────────────────────────────────────── */
 function renderProductGrid(key){
-  const grid=document.getElementById('product-grid');
-  if(!grid)return;
-  const items=PRODUCTS[key]||[];
-  if(!items.length){grid.innerHTML='<p style="color:var(--text-muted);text-align:center;grid-column:1/-1;padding:40px">Coming soon!</p>';return;}
-  grid.innerHTML=items.map((p,idx)=>{
-    const imgUrl = p.localImg ? p.localImg : getProductImg(key, idx);
-    const sizeBtns=p.sizes.map(s=>`<button class="size-btn" onclick="selectSize(this)">${s}</button>`).join('');
-    return `
-    <div class="pci">
-      <div class="pci__img-wrap">
-        <img class="pci__img" src="${imgUrl}" alt="${p.name}" loading="lazy"
-             onerror="this.parentElement.style.background='linear-gradient(135deg,${p.color}88,${p.color}44)'">
-        <div class="pci__color-bar" style="background:${p.color}"></div>
-        <div class="pci__logo-badge">
+  const grid = document.getElementById('product-grid');
+  if(!grid) return;
+
+  /* Swap class to poster-grid */
+  grid.className = 'poster-grid switching';
+
+  setTimeout(()=>{
+    const items = PRODUCTS[key]||[];
+    if(!items.length){
+      grid.innerHTML='<p style="color:var(--text-muted);text-align:center;grid-column:1/-1;padding:40px 20px">Coming soon!</p>';
+      grid.className='poster-grid';
+      return;
+    }
+
+    grid.innerHTML = items.map((p,idx)=>{
+      const imgUrl = p.localImg ? p.localImg : getProductImg(key, idx);
+      const sizeBtns = p.sizes.map(s=>`<button class="poster-size-btn" onclick="selectSize(this)">${s}</button>`).join('');
+      return `
+      <div class="poster-card">
+        <div class="poster-fallback" style="background:linear-gradient(160deg,${p.color}cc,${p.color}44)">
+          <span class="poster-fallback__name">${p.name}</span>
+        </div>
+        <div class="poster-img-wrap">
+          <img class="poster-img" src="${imgUrl}" alt="${p.name}" loading="lazy"
+               onerror="this.style.display='none'">
+        </div>
+        <div class="poster-overlay"></div>
+        <div class="poster-bar" style="background:${p.color}"></div>
+        <div class="poster-logo">
           <img src="https://logo.clearbit.com/${p.domain}" alt="" loading="lazy"
                onerror="this.parentElement.style.display='none'">
         </div>
-      </div>
-      <div class="pci__body">
-        <div class="pci__name">${p.name}</div>
-        <div class="pci__sub">${p.sub}</div>
-        <div class="pci__sizes">${sizeBtns}</div>
-      </div>
-    </div>`;
-  }).join('');
+        <div class="poster-body">
+          <div class="poster-name">${p.name}</div>
+          <div class="poster-sub">${p.sub}</div>
+          <div class="poster-sizes">${sizeBtns}</div>
+        </div>
+      </div>`;
+    }).join('');
+
+    grid.className = 'poster-grid';
+  }, 200);
 }
 
 function selectSize(btn){
-  btn.closest('.pci__sizes').querySelectorAll('.size-btn').forEach(b=>b.classList.remove('selected'));
+  btn.closest('.poster-sizes').querySelectorAll('.poster-size-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
 }
 
@@ -497,7 +554,9 @@ function buildTabs(){
 
   const isWine=activeMain==='wine';
   wineTabsEl.style.display=isWine?'flex':'none';
-  renderProductGrid(isWine?activeWine:activeMain);
+  const initKey=isWine?activeWine:activeMain;
+  updateCatBanner(initKey);
+  renderProductGrid(initKey);
 }
 
 function switchTab(key){
@@ -506,14 +565,16 @@ function switchTab(key){
   const wineTabsEl=document.getElementById('wine-tabs');
   const isWine=key==='wine';
   wineTabsEl.style.display=isWine?'flex':'none';
-  renderProductGrid(isWine?activeWine:key);
-  // scroll to products top
+  const renderKey=isWine?activeWine:key;
+  updateCatBanner(renderKey);
+  renderProductGrid(renderKey);
   document.getElementById('products')?.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function switchWineTab(key){
   activeWine=key;
   document.querySelectorAll('.wine-tab').forEach(t=>t.classList.toggle('active',t.textContent.trim()===WINE_TABS.find(x=>x.key===key)?.label));
+  updateCatBanner(key);
   renderProductGrid(key);
 }
 
