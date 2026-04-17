@@ -1,45 +1,67 @@
 /* ============================================================
    Liquor Time — script.js
-   Kansas City time · Age gate · Live open/closed status
+   Kansas City time · Age gate · Live open/closed · Brand ticker
    ============================================================ */
 
-// Store hours per day (0=Sun … 6=Sat)
-// Kansas City is America/Chicago — UTC-6 CST / UTC-5 CDT
 const HOURS = {
-  0: { open: 10, close: 20, label: '10:00 AM – 8:00 PM'  },  // Sunday
-  1: { open:  9, close: 23, label:  '9:00 AM – 11:00 PM' },  // Monday
-  2: { open:  9, close: 23, label:  '9:00 AM – 11:00 PM' },  // Tuesday
-  3: { open:  9, close: 23, label:  '9:00 AM – 11:00 PM' },  // Wednesday
-  4: { open:  9, close: 23, label:  '9:00 AM – 11:00 PM' },  // Thursday
-  5: { open:  9, close: 23, label:  '9:00 AM – 11:00 PM' },  // Friday
-  6: { open:  9, close: 23, label:  '9:00 AM – 11:00 PM' },  // Saturday
+  0: { open:10, close:20, label:'10:00 AM – 8:00 PM'  },
+  1: { open: 9, close:23, label: '9:00 AM – 11:00 PM' },
+  2: { open: 9, close:23, label: '9:00 AM – 11:00 PM' },
+  3: { open: 9, close:23, label: '9:00 AM – 11:00 PM' },
+  4: { open: 9, close:23, label: '9:00 AM – 11:00 PM' },
+  5: { open: 9, close:23, label: '9:00 AM – 11:00 PM' },
+  6: { open: 9, close:23, label: '9:00 AM – 11:00 PM' },
 };
 
-/* Get current time in Kansas City (America/Chicago) */
+/* Brands for the scrolling ticker */
+const TICKER_BRANDS = [
+  { name:'Jack Daniel\'s',  domain:'jackdaniels.com'       },
+  { name:'Patrón',          domain:'patrontequila.com'      },
+  { name:'Heineken',        domain:'heineken.com'           },
+  { name:'Grey Goose',      domain:'greygoose.com'          },
+  { name:'Don Julio',       domain:'donjulio.com'           },
+  { name:'Bacardi',         domain:'bacardi.com'            },
+  { name:'White Claw',      domain:'whiteclaw.com'          },
+  { name:'Jameson',         domain:'jamesonwhiskey.com'     },
+  { name:'Corona',          domain:'corona.com'             },
+  { name:'Tito\'s Vodka',   domain:'titosvodka.com'         },
+  { name:'Crown Royal',     domain:'crownroyal.com'         },
+  { name:'Modelo',          domain:'modelo.com'             },
+  { name:'Casamigos',       domain:'casamigos.com'          },
+  { name:'Captain Morgan',  domain:'captainmorgan.com'      },
+  { name:'Truly',           domain:'trulyseltzer.com'       },
+  { name:'Maker\'s Mark',   domain:'makersmark.com'         },
+  { name:'Absolut',         domain:'absolut.com'            },
+  { name:'Fireball',        domain:'fireballwhisky.com'     },
+  { name:'Budweiser',       domain:'budweiser.com'          },
+  { name:'Jägermeister',    domain:'jagermeister.com'       },
+  { name:'Stella Artois',   domain:'stellaartois.com'       },
+  { name:'Bulleit',         domain:'bulleit.com'            },
+  { name:'High Noon',       domain:'highnoonspirits.com'    },
+  { name:'Kraken',          domain:'krakenrum.com'          },
+];
+
+/* ===== KC TIME ===== */
 function getKCTime() {
   const now   = new Date();
   const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/Chicago',
-    hour:     'numeric',
-    minute:   'numeric',
-    weekday:  'short',
-    hour12:   false,
+    timeZone:'America/Chicago',
+    hour:'numeric', minute:'numeric', weekday:'short', hour12:false,
   }).formatToParts(now);
-
-  const get = (type) => parts.find(p => p.type === type)?.value ?? '';
-  const dayMap = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  const get   = (type) => parts.find(p => p.type === type)?.value ?? '';
+  const dayMap = { Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6 };
   const day    = dayMap[get('weekday')] ?? new Date().getDay();
-  const hour   = parseInt(get('hour'),   10) + parseInt(get('minute'), 10) / 60;
+  const hour   = parseInt(get('hour'),10) + parseInt(get('minute'),10) / 60;
   return { day, hour };
 }
 
 /* ===== AGE GATE ===== */
 function enterSite() {
-  sessionStorage.setItem('lt_age_ok', '1');
+  sessionStorage.setItem('lt_age_ok','1');
   const gate = document.getElementById('age-gate');
   gate.style.transition = 'opacity 0.4s ease';
   gate.style.opacity    = '0';
-  setTimeout(() => { gate.style.display = 'none'; }, 400);
+  setTimeout(() => { gate.style.display = 'none'; }, 420);
   document.body.style.overflow = '';
 }
 
@@ -56,34 +78,25 @@ function initAgeGate() {
   }
 }
 
-/* ===== STORE STATUS (open / closed) ===== */
+/* ===== STORE STATUS ===== */
 function initStoreStatus() {
   const { day, hour } = getKCTime();
-  const today      = HOURS[day];
-  const isOpen     = hour >= today.open && hour < today.close;
+  const today  = HOURS[day];
+  const isOpen = hour >= today.open && hour < today.close;
 
-  // Hero badge
   const badge = document.getElementById('store-status');
   if (badge) {
     badge.textContent = isOpen ? '✅ Open Now' : '❌ Closed Now';
     badge.className   = 'hero__badge ' + (isOpen ? 'open' : 'closed');
   }
 
-  // Location "Status Right Now"
   const todayEl = document.getElementById('hours-today');
   if (todayEl) {
     todayEl.textContent = (isOpen ? '✅ Open — ' : '❌ Closed — ') + today.label;
   }
 
-  // Highlight today's row in the hours table
   const todayRow = document.querySelector(`.hours-row[data-day="${day}"]`);
-  if (todayRow) {
-    todayRow.classList.add('today');
-    // Scroll into view gently if user lands on #hours
-    if (window.location.hash === '#hours') {
-      setTimeout(() => todayRow.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
-    }
-  }
+  if (todayRow) todayRow.classList.add('today');
 }
 
 /* ===== DEAL BANNER ===== */
@@ -92,40 +105,57 @@ function initDealBanner() {
   const badge   = document.getElementById('deal-badge');
   if (!badge) return;
 
-  if (day === 2 || day === 3) {   // Tuesday or Wednesday
+  if (day === 2 || day === 3) {
     badge.textContent = '🔥 DEAL ACTIVE TODAY!';
     badge.classList.add('active');
-
-    // Make the deal banner extra prominent
     const banner = document.querySelector('.deal-banner');
-    if (banner) banner.style.borderColor = 'rgba(192,57,43,0.55)';
-
-    // Also visually pop the wine card
+    if (banner) banner.style.borderColor = 'rgba(192,57,43,0.6)';
     const wineCard = document.querySelector('.product-card--deal');
-    if (wineCard) {
-      wineCard.style.boxShadow = '0 0 32px rgba(192,57,43,0.25)';
-    }
+    if (wineCard) wineCard.style.boxShadow = '0 0 36px rgba(192,57,43,0.3)';
   }
 }
 
-/* ===== NAVIGATION TOGGLE ===== */
+/* ===== BRAND TICKER ===== */
+function buildTicker() {
+  const track = document.getElementById('ticker-track');
+  if (!track) return;
+
+  const allBrands = [...TICKER_BRANDS, ...TICKER_BRANDS]; // double for infinite loop
+
+  const html = allBrands.map((b, i) => `
+    <div class="ticker-item">
+      <div class="brand-logo" style="width:32px;height:32px;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
+        <img src="https://logo.clearbit.com/${b.domain}"
+             alt="${b.name}"
+             loading="lazy"
+             style="width:100%;height:100%;object-fit:contain;padding:3px;"
+             onerror="this.style.display='none'">
+      </div>
+      <span>${b.name}</span>
+    </div>
+    ${i < allBrands.length - 1 ? '<div class="ticker-dot"></div>' : ''}
+  `).join('');
+
+  track.innerHTML = html;
+}
+
+/* ===== NAV ===== */
 function initNav() {
   const toggle = document.getElementById('nav-toggle');
   const menu   = document.getElementById('nav-mobile');
   if (!toggle || !menu) return;
 
   toggle.addEventListener('click', () => {
-    const isOpen = menu.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    menu.setAttribute('aria-hidden', String(!isOpen));
+    const open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
   });
 
-  // Close on outside click
   document.addEventListener('click', (e) => {
     if (!toggle.contains(e.target) && !menu.contains(e.target)) {
       menu.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded','false');
+      menu.setAttribute('aria-hidden','true');
     }
   });
 }
@@ -137,27 +167,23 @@ function closeMobileMenu() {
   if (toggle)   toggle.setAttribute('aria-expanded','false');
 }
 
-/* ===== NAVBAR SCROLL SHADOW ===== */
+/* ===== NAV SCROLL SHADOW ===== */
 function initNavScroll() {
   const nav = document.getElementById('navbar');
   if (!nav) return;
   window.addEventListener('scroll', () => {
-    nav.style.boxShadow = window.scrollY > 10
-      ? '0 4px 24px rgba(0,0,0,0.5)'
-      : 'none';
-  }, { passive: true });
+    nav.style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,0.5)' : 'none';
+  }, { passive:true });
 }
 
-/* ===== SMOOTH ANCHOR OFFSET (account for sticky nav) ===== */
+/* ===== SMOOTH SCROLL (offset for sticky nav) ===== */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       const target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      const offset = 72; // nav height
-      const top    = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 72, behavior:'smooth' });
     });
   });
 }
@@ -167,6 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAgeGate();
   initStoreStatus();
   initDealBanner();
+  buildTicker();
   initNav();
   initNavScroll();
   initSmoothScroll();
