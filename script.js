@@ -193,7 +193,7 @@ function jumpToCategory(key){
 const PRODUCTS = {
   beer: [
     {name:'Budweiser',          sub:'American Lager',      domain:'budweiser.com',       color:'#c41230', sizes:['6-Pack','12-Pack','24-Pack','30-Pack']},
-    {name:'Bud Light',          sub:'Light Lager',         domain:'budlight.com',        color:'#004b9e', sizes:['6-Pack','12-Pack','24-Pack','30-Pack']},
+    {name:'Bud Light',          sub:'Light Lager',         domain:'budlight.com',        color:'#004b9e', sizes:['6-Pack','12-Pack','24-Pack','30-Pack'], localImg:'images/Bud_Light_30-12Oz.webp'},
     {name:'Coors Light',        sub:'Light Beer',          domain:'coorslight.com',      color:'#0095b6', sizes:['6-Pack','12-Pack','24-Pack','30-Pack']},
     {name:'Corona Extra',       sub:'Mexican Lager',       domain:'corona.com',          color:'#c8900a', sizes:['6-Pack','12-Pack','24-Pack']},
     {name:'Modelo Especial',    sub:'Pilsner',             domain:'modelo.com',          color:'#003a7a', sizes:['6-Pack','12-Pack','24-Pack']},
@@ -204,6 +204,7 @@ const PRODUCTS = {
     {name:'Sam Adams Boston',   sub:'Boston Lager',        domain:'samueladams.com',     color:'#8b0000', sizes:['6-Pack','12-Pack']},
     {name:'Dos Equis Lager',    sub:'Mexican Lager',       domain:'dosequis.com',        color:'#00843d', sizes:['6-Pack','12-Pack']},
     {name:'Pacifico Clara',     sub:'Mexican Pilsner',     domain:'pacifico.com',        color:'#003087', sizes:['6-Pack','12-Pack','24-Pack']},
+    {name:'Busch Light',        sub:'Light Lager',         domain:'busch.com',           color:'#0055a5', sizes:['6-Pack','12-Pack','24-Pack','30-Pack'], localImg:'images/Bush_Light_30_12Oz.webp'},
   ],
   wine_red: [
     {name:'Apothic Red Blend',      sub:'Merlot · Syrah · Cab',      domain:'apothicwine.com',    color:'#6b0a2d', sizes:['750ml','1.5L']},
@@ -453,7 +454,7 @@ function renderProductGrid(key){
   const items=PRODUCTS[key]||[];
   if(!items.length){grid.innerHTML='<p style="color:var(--text-muted);text-align:center;grid-column:1/-1;padding:40px">Coming soon!</p>';return;}
   grid.innerHTML=items.map((p,idx)=>{
-    const imgUrl = getProductImg(key, idx);
+    const imgUrl = p.localImg ? p.localImg : getProductImg(key, idx);
     const sizeBtns=p.sizes.map(s=>`<button class="size-btn" onclick="selectSize(this)">${s}</button>`).join('');
     return `
     <div class="pci">
