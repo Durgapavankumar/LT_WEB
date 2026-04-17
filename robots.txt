@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://durgapavankumar.github.io/LT_WEB/sitemap.xml
