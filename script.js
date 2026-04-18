@@ -433,43 +433,6 @@ function buildBrandCarousel(){
   track.innerHTML=html;
 }
 
-/* ── CATEGORY BANNER CONFIG ──────────────────────────────── */
-const CAT_BANNER_IMG = {
-  beer:    'https://images.unsplash.com/photo-1436076863939-06870fe779c2?auto=format&fit=crop&w=900&q=80',
-  wine:    'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80',
-  whiskey: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=900&q=80',
-  vodka:   'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=80',
-  tequila: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=80',
-  rum:     'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=900&q=80',
-  gin:     'https://images.unsplash.com/photo-1608270586620-248524c67de5?auto=format&fit=crop&w=900&q=80',
-  seltzer: 'https://images.unsplash.com/photo-1485824890521-7ef09b2d89c7?auto=format&fit=crop&w=900&q=80',
-  wine_brands:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80',
-  wine_variety:'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80',
-};
-
-function updateCatBanner(key){
-  let banner = document.getElementById('cat-banner');
-  if(!banner){
-    banner = document.createElement('div');
-    banner.id = 'cat-banner';
-    banner.className = 'cat-banner';
-    document.getElementById('product-grid').before(banner);
-  }
-  const tab = [...MAIN_TABS,...WINE_TABS].find(t=>t.key===key);
-  const label = tab ? tab.label.replace(/^[^\s]+ /,'') : key;
-  const emoji = tab ? tab.label.split(' ')[0] : '🍸';
-  const count = (PRODUCTS[key]||[]).length;
-  const img = CAT_BANNER_IMG[key] || CAT_BANNER_IMG.whiskey;
-  banner.innerHTML = `
-    <div class="cat-banner__bg" style="background-image:url('${img}')"></div>
-    <div class="cat-banner__body">
-      <div class="cat-banner__emoji">${emoji}</div>
-      <div class="cat-banner__label">${label}</div>
-      <div class="cat-banner__count">${count} products available</div>
-    </div>`;
-  banner.classList.remove('visible');
-  requestAnimationFrame(()=>banner.classList.add('visible'));
-}
 
 /* ── PRODUCT CATALOG ─────────────────────────────────────── */
 function renderProductGrid(key){
@@ -541,7 +504,6 @@ function buildTabs(){
   const isWine=activeMain==='wine';
   wineTabsEl.style.display=isWine?'flex':'none';
   const initKey=isWine?activeWine:activeMain;
-  updateCatBanner(initKey);
   renderProductGrid(initKey);
 }
 
@@ -552,7 +514,6 @@ function switchTab(key){
   const isWine=key==='wine';
   wineTabsEl.style.display=isWine?'flex':'none';
   const renderKey=isWine?activeWine:key;
-  updateCatBanner(renderKey);
   renderProductGrid(renderKey);
   document.getElementById('products')?.scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -560,7 +521,6 @@ function switchTab(key){
 function switchWineTab(key){
   activeWine=key;
   document.querySelectorAll('.wine-tab').forEach(t=>t.classList.toggle('active',t.textContent.trim()===WINE_TABS.find(x=>x.key===key)?.label));
-  updateCatBanner(key);
   renderProductGrid(key);
 }
 
