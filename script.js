@@ -485,37 +485,24 @@ function selectSize(btn){
 function buildTabs(){
   const catTabsEl=document.getElementById('cat-tabs');
   const wineTabsEl=document.getElementById('wine-tabs');
-  if(!catTabsEl)return;
-
-  catTabsEl.innerHTML=MAIN_TABS.map(t=>{
-    const parts=t.label.split(' ');
-    const emoji=parts[0];
-    const label=parts.slice(1).join(' ');
-    return `<button class="cat-tab${t.key===activeMain?' active':''}" onclick="switchTab('${t.key}')">
-      <span class="cat-tab__emoji">${emoji}</span>
-      <span class="cat-tab__label">${label}</span>
-    </button>`;
-  }).join('');
+  if(catTabsEl) catTabsEl.style.display='none';
+  if(!wineTabsEl) return;
 
   wineTabsEl.innerHTML=WINE_TABS.map(t=>`
     <button class="wine-tab${t.key===activeWine?' active':''}" onclick="switchWineTab('${t.key}')">${t.label}</button>
   `).join('');
 
-  const isWine=activeMain==='wine';
-  wineTabsEl.style.display=isWine?'flex':'none';
-  const initKey=isWine?activeWine:activeMain;
-  renderProductGrid(initKey);
+  wineTabsEl.style.display='none';
+  renderProductGrid(activeMain);
 }
 
 function switchTab(key){
   activeMain=key;
-  document.querySelectorAll('.cat-tab').forEach((t,i)=>t.classList.toggle('active',MAIN_TABS[i]?.key===key));
   const wineTabsEl=document.getElementById('wine-tabs');
   const isWine=key==='wine';
-  wineTabsEl.style.display=isWine?'flex':'none';
+  if(wineTabsEl) wineTabsEl.style.display=isWine?'flex':'none';
   const renderKey=isWine?activeWine:key;
   renderProductGrid(renderKey);
-  document.getElementById('products')?.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function switchWineTab(key){
