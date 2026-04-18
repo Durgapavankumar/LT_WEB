@@ -61,7 +61,7 @@ const BRANDS = [
 /* Cat badge colors */
 const CAT_COLORS = {
   Beer:'#f59e0b', Whiskey:'#b45309', Vodka:'#0ea5e9', Tequila:'#65a30d',
-  Rum:'#ea580c', Wine:'#be123c', Seltzer:'#06b6d4', Shots:'#7c3aed',
+  Rum:'#ea580c', Gin:'#16a34a', Wine:'#be123c', Seltzer:'#06b6d4', Shots:'#7c3aed',
   Champagne:'#d4af37',
 };
 
@@ -289,16 +289,29 @@ const PRODUCTS = {
     {name:'Camarena Silver',        sub:'Blanco · 100% Blue Agave',   domain:'camarena.com',        color:'#1a5a8a', sizes:['750ml','1.75L'],                     localImg:'images/Tequila/camarena.jpeg'},
   ],
   rum: [
-    {name:'Bacardi Superior White', sub:'White Rum · Puerto Rico',    domain:'bacardi.com',          color:'#111111', sizes:['375ml Pint','750ml','1L','1.75L']},
-    {name:'Captain Morgan Spiced',  sub:'Spiced Gold Rum',            domain:'captainmorgan.com',    color:'#8b1a00', sizes:['375ml Pint','750ml','1L','1.75L']},
-    {name:'Malibu Coconut Rum',     sub:'Caribbean Coconut Rum',      domain:'malibucocolada.com',   color:'#003060', sizes:['375ml Pint','750ml','1L','1.75L']},
+    {name:'Bacardi Superior White', sub:'White Rum · Puerto Rico',    domain:'bacardi.com',          color:'#111111', sizes:['375ml Pint','750ml','1L','1.75L'],  localImg:'images/Rum/Bacardi_Superior_White.jpeg'},
+    {name:'Bacardi Gold',           sub:'Gold Rum · Puerto Rico',     domain:'bacardi.com',          color:'#8a5a00', sizes:['375ml Pint','750ml','1L','1.75L'],  localImg:'images/Rum/bacardi_gold.jpeg'},
+    {name:'Captain Morgan Spiced',  sub:'Spiced Gold Rum',            domain:'captainmorgan.com',    color:'#8b1a00', sizes:['375ml Pint','750ml','1L','1.75L'],  localImg:'images/Rum/CaptainMorganSpiced.jpeg'},
+    {name:'Malibu Coconut Rum',     sub:'Caribbean Coconut Rum',      domain:'malibucocolada.com',   color:'#003060', sizes:['375ml Pint','750ml','1L','1.75L'],  localImg:'images/Rum/MalibuCoconutRum.jpeg'},
     {name:'Kraken Black Spiced',    sub:'Black Spiced Rum · Trinidad',domain:'krakenrum.com',        color:'#100800', sizes:['375ml Pint','750ml','1.75L']},
     {name:'Flor de Caña 4 Year',    sub:'Extra Dry Rum · Nicaragua',  domain:'flordecana.com',       color:'#1a3a1a', sizes:['750ml','1.75L']},
-    {name:'Plantation 3 Stars',     sub:'White Rum · 3-Country Blend',domain:'plantationrum.com',   color:'#7a5a20', sizes:['750ml','1.75L']},
-    {name:"Myers's Original Dark",  sub:'Dark Rum · Jamaica',         domain:'myersrum.com',         color:'#3a1a00', sizes:['375ml Pint','750ml','1.75L']},
-    {name:'Mount Gay Eclipse',      sub:'Barbados Rum · Aged',        domain:'mountgayrum.com',      color:'#7a2a00', sizes:['750ml','1.75L']},
+    {name:'Plantation 3 Stars',     sub:'White Rum · 3-Country Blend',domain:'plantationrum.com',    color:'#7a5a20', sizes:['750ml','1.75L'],                    localImg:'images/Rum/Plantation_3_Stars.jpeg'},
+    {name:"Myers's Original Dark",  sub:'Dark Rum · Jamaica',         domain:'myersrum.com',         color:'#3a1a00', sizes:['375ml Pint','750ml','1.75L'],       localImg:'images/Rum/MyerssOriginalDark.jpeg'},
+    {name:'Mount Gay Eclipse',      sub:'Barbados Rum · Aged',        domain:'mountgayrum.com',      color:'#7a2a00', sizes:['750ml','1.75L'],                    localImg:'images/Rum/MountGayEclipse.jpeg'},
     {name:'Gosling\'s Black Seal',  sub:'Dark Rum · Bermuda',         domain:'goslingsrum.com',      color:'#1a0800', sizes:['750ml']},
-    {name:'Malibu Black Coconut',   sub:'Coconut Rum 35% ABV',        domain:'malibucocolada.com',   color:'#1a1a3a', sizes:['750ml','1.75L']},
+    {name:'Malibu Black Coconut',   sub:'Coconut Rum 35% ABV',        domain:'malibucocolada.com',   color:'#1a1a3a', sizes:['750ml','1.75L'],                    localImg:'images/Rum/Malibu_black.jpeg'},
+  ],
+  gin: [
+    {name:'Tanqueray London Dry',   sub:'London Dry Gin · Scotland',  domain:'tanqueray.com',        color:'#004a00', sizes:['375ml Pint','750ml','1.75L']},
+    {name:"Hendrick's Gin",         sub:'Scottish Gin · Cucumber Rose',domain:'hendricksgin.com',    color:'#1a2a1a', sizes:['750ml','1.75L']},
+    {name:'Bombay Sapphire',        sub:'London Dry Gin · England',   domain:'bombaysapphire.com',   color:'#003a8a', sizes:['375ml Pint','750ml','1.75L']},
+    {name:'Beefeater London Dry',   sub:'London Dry Gin · England',   domain:'beefeatergarden.com',  color:'#a41020', sizes:['375ml Pint','750ml','1.75L']},
+    {name:"Seagram's Extra Dry",    sub:'American Dry Gin',           domain:'seagramsgin.com',      color:'#1a5a1a', sizes:['375ml Pint','750ml','1.75L']},
+    {name:'New Amsterdam Gin',      sub:'American Gin · California',  domain:'newamsterdamspirits.com',color:'#1a3a6a',sizes:['375ml Pint','750ml','1.75L']},
+    {name:"Gordon's London Dry",    sub:'London Dry Gin · England',   domain:'gordonsgin.com',       color:'#005a00', sizes:['750ml','1.75L']},
+    {name:'Roku Japanese Gin',      sub:'Japanese Craft Gin',         domain:'suntory.com',          color:'#8a4a00', sizes:['750ml']},
+    {name:'Aviation American Gin',  sub:'American Gin · Portland OR', domain:'aviationgin.com',      color:'#6a3a7a', sizes:['375ml Pint','750ml','1.75L']},
+    {name:'Empress 1908 Gin',       sub:'Indigo Gin · Victoria BC',   domain:'empress1908gin.com',   color:'#4a1a6a', sizes:['750ml']},
   ],
   seltzer: [
     {name:'White Claw Black Cherry',sub:'Hard Seltzer · 5% ABV',      domain:'whiteclaw.com',        color:'#6b0a2d', sizes:['Single 19.2oz','6-Pack','12-Pack','24-Pack']},
@@ -332,6 +345,7 @@ const MAIN_TABS = [
   {key:'vodka',         label:'🍸 Vodka'},
   {key:'tequila',       label:'🌵 Tequila'},
   {key:'rum',           label:'🍹 Rum'},
+  {key:'gin',           label:'🌿 Gin'},
   {key:'seltzer',       label:'🫧 Seltzers'},
   {key:'shots',         label:'🥂 Shots & Margs'},
 ];
@@ -450,6 +464,7 @@ const CAT_BANNER_IMG = {
   vodka:   'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=80',
   tequila: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=80',
   rum:     'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=900&q=80',
+  gin:     'https://images.unsplash.com/photo-1608270586620-248524c67de5?auto=format&fit=crop&w=900&q=80',
   seltzer: 'https://images.unsplash.com/photo-1485824890521-7ef09b2d89c7?auto=format&fit=crop&w=900&q=80',
   shots:   'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=80',
   wine_red:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80',
