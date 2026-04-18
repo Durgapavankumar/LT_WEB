@@ -157,14 +157,14 @@ function getProductImg(key, idx){
 
 /* ── CATEGORY CIRCLES DATA ───────────────────────────────── */
 const CATEGORY_CIRCLES = [
-  {key:'beer',    label:'Beer',          emoji:'🍺', img:'photo-1436076863939-06870fe779c2'},
-  {key:'wine',    label:'Wine',          emoji:'🍷', img:'photo-1558618666-fcd25c85cd64'},
-  {key:'whiskey', label:'Whiskey',       emoji:'🥃', img:'photo-1527281400683-1aae777175f8'},
-  {key:'vodka',   label:'Vodka',         emoji:'🍸', img:'photo-1551538827-9c037cb4f32a'},
-  {key:'tequila', label:'Tequila',       emoji:'🌵', img:'photo-1514362545857-3bc16c4c7d1b'},
-  {key:'rum',     label:'Rum',           emoji:'🍹', img:'photo-1569529465841-dfecdab7503b'},
-  {key:'seltzer', label:'Seltzers',      emoji:'🫧', img:'photo-1485824890521-7ef09b2d89c7'},
-  {key:'shots',   label:'Shots & Margs', emoji:'🥂', img:'photo-1544145945-f90425340c7e'},
+  {key:'beer',    label:'Beer',     emoji:'🍺', img:'images/beer/corona-extra-bottles.jpg'},
+  {key:'wine',    label:'Wine',     emoji:'🍷', img:'images/Wine/Brand/Barefoot.jpg'},
+  {key:'whiskey', label:'Whiskey',  emoji:'🥃', img:'images/whiskey/jameson_bottle.jpeg'},
+  {key:'vodka',   label:'Vodka',    emoji:'🍸', img:'images/vodka/Titos.jpeg'},
+  {key:'tequila', label:'Tequila',  emoji:'🌵', img:'images/Tequila/Jose_Cuervo_Gold.jpeg'},
+  {key:'rum',     label:'Rum',      emoji:'🍹', img:'images/Rum/CaptainMorganSpiced.jpeg'},
+  {key:'gin',     label:'Gin',      emoji:'🌿', img:'images/Gin/Hendricks_Gin.jpeg'},
+  {key:'seltzer', label:'Seltzers', emoji:'🫧', img:'images/Seltzers/White_Claw_Black_Cherry.jpeg'},
 ];
 
 function buildCategoryCircles(){
@@ -173,8 +173,8 @@ function buildCategoryCircles(){
   grid.innerHTML = CATEGORY_CIRCLES.map(c => `
     <div class="category-circle" id="circle-${c.key}" onclick="jumpToCategory('${c.key}')">
       <div class="category-circle__img">
-        <img src="${BASE}${c.img}${FMT_SQ}" alt="${c.label}" loading="lazy"
-             onerror="this.style.display='none';this.parentElement.style.background='#f4f5f7'">
+        <img src="${c.img}" alt="${c.label}" loading="lazy"
+             onerror="this.src='${BASE}photo-1436076863939-06870fe779c2${FMT_SQ}'">
       </div>
       <span class="category-circle__label">${c.emoji} ${c.label}</span>
     </div>
