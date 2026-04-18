@@ -61,7 +61,7 @@ const BRANDS = [
 /* Cat badge colors */
 const CAT_COLORS = {
   Beer:'#f59e0b', Whiskey:'#b45309', Vodka:'#0ea5e9', Tequila:'#65a30d',
-  Rum:'#ea580c', Gin:'#16a34a', Wine:'#be123c', Seltzer:'#06b6d4', Shots:'#7c3aed',
+  Rum:'#ea580c', Gin:'#16a34a', Wine:'#be123c', Seltzer:'#06b6d4',
   Champagne:'#d4af37',
 };
 
@@ -238,6 +238,7 @@ const PRODUCTS = {
     {name:'Glenfiddich 14 Year',    sub:'Bourbon Barrel Reserve',      domain:'glenfiddich.com',        color:'#7a5000', sizes:['750ml'],                             localImg:'images/whiskey/glenfiddich_14years.jpeg'},
     {name:'Hennessy VS',            sub:'Very Special Cognac · France', domain:'hennessy.com',          color:'#1a0a00', sizes:['375ml Pint','750ml','1L','1.75L'], localImg:'images/whiskey/Hennessy.jpeg'},
     {name:"Weller's Special Reserve",sub:'Wheated Bourbon · Buffalo Trace',domain:'wellers.com',       color:'#5a2a00', sizes:['750ml'],                             localImg:'images/whiskey/wellers.jpeg'},
+    {name:'Fireball Cinnamon',       sub:'Cinnamon Whisky Liqueur',      domain:'fireballwhisky.com',   color:'#a41020', sizes:['50ml Mini','375ml Pint','750ml','1.75L'], localImg:'images/whiskey/fireball.jpg'},
   ],
   vodka: [
     {name:"Tito's Handmade Vodka",  sub:'Texas Vodka · Corn-based',    domain:'titosvodka.com',        color:'#003087', sizes:['375ml Pint','750ml','1L','1.75L'], localImg:'images/vodka/Titos.jpeg'},
@@ -307,16 +308,6 @@ const PRODUCTS = {
     {name:'Dad Water Seltzer',      sub:'Hard Seltzer · 5% ABV',      domain:'drinkdadwater.com',    color:'#1a5a8a', sizes:['Single 12oz','6-Pack','12-Pack'],             localImg:'images/Seltzers/dad_water.png'},
     {name:'Smirnoff Ice Red White', sub:'Red White & Berry Malt Bev',  domain:'smirnoff.com',         color:'#a41020', sizes:['Single 11.2oz','6-Pack'],                    localImg:'images/Seltzers/smirnoff_ice_red_white.jpg'},
   ],
-  shots: [
-    {name:'Fireball Cinnamon',      sub:'Cinnamon Whisky Liqueur',    domain:'fireballwhisky.com',   color:'#a41020', sizes:['50ml Mini','375ml Pint','750ml','1.75L'], localImg:'images/whiskey/fireball.jpg'},
-    {name:'Jägermeister',           sub:'Herbal Digestif Liqueur',    domain:'jagermeister.com',     color:'#005e23', sizes:['50ml Mini','375ml Pint','750ml','1.75L']},
-    {name:'RumChata',               sub:'Horchata Cream Liqueur',     domain:'rumchata.com',         color:'#a05820', sizes:['375ml Pint','750ml','1.75L']},
-    {name:'DeKuyper Peach Schnapps',sub:'Peach Schnapps',             domain:'dekuyper.com',         color:'#c06000', sizes:['375ml Pint','750ml']},
-    {name:'Jose Cuervo Margarita',  sub:'Ready-to-Drink Margarita',   domain:'cuervo.com',           color:'#7a5000', sizes:['1L','1.75L']},
-    {name:'Master of Mixes',        sub:'Classic Margarita Mix',      domain:'masterofmixes.com',    color:'#1a6a1a', sizes:['1L','1.75L']},
-    {name:'Tres Agaves Organic Mix',sub:'Organic Margarita Mix',      domain:'tresagaves.com',       color:'#2a6a10', sizes:['1L']},
-    {name:'Dr. McGillicuddy Cherry',sub:'Cherry Schnapps Liqueur',    domain:'drmcgillicuddys.com',  color:'#7a0a0a', sizes:['375ml Pint','750ml']},
-  ],
 };
 
 /* Tab config */
@@ -329,7 +320,6 @@ const MAIN_TABS = [
   {key:'rum',           label:'🍹 Rum'},
   {key:'gin',           label:'🌿 Gin'},
   {key:'seltzer',       label:'🫧 Seltzers'},
-  {key:'shots',         label:'🥂 Shots & Margs'},
 ];
 const WINE_TABS = [
   {key:'wine_brands',  label:'🏆 Top Brands'},
@@ -446,7 +436,6 @@ const CAT_BANNER_IMG = {
   rum:     'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=900&q=80',
   gin:     'https://images.unsplash.com/photo-1608270586620-248524c67de5?auto=format&fit=crop&w=900&q=80',
   seltzer: 'https://images.unsplash.com/photo-1485824890521-7ef09b2d89c7?auto=format&fit=crop&w=900&q=80',
-  shots:   'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=80',
   wine_brands:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80',
   wine_variety:'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80',
 };
