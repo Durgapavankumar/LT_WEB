@@ -14,16 +14,16 @@ const HOURS = {
   6:{open:9,close:23,label:'9:00 AM – 11:00 PM'},
 };
 
-/* ── HERO SLIDESHOW IMAGES (Unsplash stable IDs) ─────────── */
+/* ── HERO SLIDESHOW IMAGES ───────────────────────────────── */
 const HERO_SLIDES = [
-  'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=1400&q=80',
-  'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1400&q=80',
-  'https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=1400&q=80',
-  'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1400&q=80',
-  'https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=1400&q=80',
-  'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1400&q=80',
-  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80',
-  'https://images.unsplash.com/photo-1485824890521-7ef09b2d89c7?auto=format&fit=crop&w=1400&q=80',
+  'images/beer/corona-extra-bottles.jpg',
+  'images/whiskey/jack_daniel_bottle.webp',
+  'images/Tequila/Jose_Cuervo_Gold.jpeg',
+  'images/Rum/CaptainMorganSpiced.jpeg',
+  'images/vodka/grey_goose.webp',
+  'images/Gin/Hendricks_Gin.jpeg',
+  'images/Wine/Brand/Apothic_Wines.webp',
+  'images/Seltzers/White_Claw_Black_Cherry.jpeg',
 ];
 
 /* ── BRAND POSTERS ───────────────────────────────────────── */
