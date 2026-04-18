@@ -548,6 +548,74 @@ function initSmoothScroll(){
 }
 
 /* ── INIT ────────────────────────────────────────────────── */
+/* ── ANIMATIONS ──────────────────────────────────────────── */
+function initAnimations(){
+  // Scroll progress bar
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.prepend(bar);
+  window.addEventListener('scroll', ()=>{
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, {passive:true});
+
+  // Section headers — draw underline
+  const headerObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('line-drawn'); });
+  },{threshold:.4});
+  document.querySelectorAll('.section-header').forEach(el=>headerObs.observe(el));
+
+  // Generic scroll reveal
+  const revealObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
+  },{threshold:.12});
+
+  // Assign reveal classes to key sections
+  const revealMap = [
+    ['#shop-by .shop-by__header','reveal'],
+    ['#brands .brand-carousel__header','reveal'],
+    ['#deals .deal-banner__inner','reveal-scale'],
+    ['#hours .section-header','reveal'],
+    ['#hours .hours-section__card','reveal'],
+    ['#location .section-header','reveal'],
+    ['#location .location__info','reveal-left d1'],
+    ['#location .location__map','reveal-right d2'],
+    ['#contact .section-header','reveal'],
+    ['#contact .contact-info','reveal-left d1'],
+    ['#contact .contact-form','reveal-right d2'],
+  ];
+  revealMap.forEach(([sel, cls])=>{
+    document.querySelectorAll(sel).forEach(el=>{
+      cls.split(' ').forEach(c=>el.classList.add(c));
+      revealObs.observe(el);
+    });
+  });
+
+  // Hours rows stagger
+  document.querySelectorAll('.hours-row').forEach((row,i)=>{
+    row.classList.add('reveal');
+    row.style.transitionDelay = (i * 0.07) + 's';
+    revealObs.observe(row);
+  });
+
+  // Category circles — animate grid in when visible
+  const circleGrid = document.getElementById('shop-by-grid');
+  if(circleGrid){
+    new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('animate-in'); });
+    },{threshold:.2}).observe(circleGrid);
+  }
+
+  // Product section — re-run reveal on each grid render
+  const prodObs = new MutationObserver(()=>{
+    document.querySelectorAll('.poster-card:not(.reveal)').forEach((card,i)=>{
+      card.style.animationDelay = (i * 0.05) + 's';
+    });
+  });
+  const grid = document.getElementById('product-grid');
+  if(grid) prodObs.observe(grid, {childList:true});
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   initAgeGate();
   initStoreStatus();
@@ -559,4 +627,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   initNav();
   initNavScroll();
   initSmoothScroll();
+  initAnimations();
 });
