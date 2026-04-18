@@ -346,18 +346,68 @@ function getKCTime() {
 }
 
 /* ── AGE GATE ────────────────────────────────────────────── */
-function enterSite() {
+function enterSite(){
   sessionStorage.setItem('lt_age_ok','1');
-  const g=document.getElementById('age-gate');
-  g.style.transition='opacity .4s ease'; g.style.opacity='0';
-  setTimeout(()=>{g.style.display='none';},420);
-  document.body.style.overflow='';
+
+  // Fade out age gate
+  const gate = document.getElementById('age-gate');
+  gate.style.transition = 'opacity .35s ease';
+  gate.style.opacity = '0';
+  setTimeout(()=>{ gate.style.display='none'; }, 360);
+
+  // Show beer transition
+  const wrap = document.getElementById('beer-transition');
+  wrap.classList.add('active');
+
+  // t=200 — stream starts flowing
+  setTimeout(()=>{ document.getElementById('bt-stream').classList.add('on'); }, 200);
+
+  // t=500 — liquid fills
+  setTimeout(()=>{ document.getElementById('bt-liquid').classList.add('filling'); }, 500);
+
+  // t=2100 — foam appears
+  setTimeout(()=>{ document.getElementById('bt-foam').classList.add('on'); }, 2100);
+
+  // t=2600 — overflow spill
+  setTimeout(()=>{ document.getElementById('bt-spill').classList.add('on'); }, 2600);
+
+  // t=3000 — amber flood expands from center
+  setTimeout(()=>{ document.getElementById('bt-flood').classList.add('on'); }, 3000);
+
+  // t=3700 — foam wash covers everything
+  setTimeout(()=>{ document.getElementById('bt-wash').classList.add('on'); }, 3700);
+
+  // t=4400 — done, remove overlay and enter
+  setTimeout(()=>{
+    wrap.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 4400);
 }
-function denyEntry(){window.location.href='https://www.alcohol.org/';}
+
+function denyEntry(){
+  document.getElementById('age-gate').style.display = 'none';
+  const deny = document.getElementById('deny-page');
+  deny.style.display = 'flex';
+  // Animate progress bar to a random "not quite there" width
+  setTimeout(()=>{
+    const fill = document.getElementById('deny-fill');
+    if(fill) fill.style.width = (Math.floor(Math.random()*25)+55) + '%';
+  }, 400);
+}
+
+function resetAgeGate(){
+  document.getElementById('deny-page').style.display = 'none';
+  document.getElementById('age-gate').style.display = 'flex';
+  document.getElementById('age-gate').style.opacity = '1';
+}
+
 function initAgeGate(){
-  const g=document.getElementById('age-gate');
-  if(sessionStorage.getItem('lt_age_ok')==='1'){g.style.display='none';}
-  else{document.body.style.overflow='hidden';}
+  const g = document.getElementById('age-gate');
+  if(sessionStorage.getItem('lt_age_ok')==='1'){
+    g.style.display = 'none';
+  } else {
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 /* ── STORE STATUS ────────────────────────────────────────── */
