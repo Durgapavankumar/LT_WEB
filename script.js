@@ -203,51 +203,27 @@ const PRODUCTS = {
     {name:'Stella Artois',      sub:'Belgian Lager',        domain:'stellaartois.com',    color:'#003b6f', sizes:['6-Pack','12-Pack'],                    localImg:'images/beer/stella_artois.png'},
     {name:'Busch Light',        sub:'Light Lager',          domain:'busch.com',           color:'#0055a5', sizes:['6-Pack','12-Pack','24-Pack','30-Pack'], localImg:'images/beer/bush_light.png'},
   ],
-  wine_red: [
-    {name:'Apothic Red Blend',      sub:'Merlot · Syrah · Cab',      domain:'apothicwine.com',    color:'#6b0a2d', sizes:['750ml','1.5L']},
-    {name:'Josh Cellars Cabernet',  sub:'Cabernet Sauvignon',        domain:'joshcellars.com',    color:'#722f37', sizes:['750ml','1.5L']},
-    {name:'Meiomi Pinot Noir',      sub:'Pinot Noir · California',   domain:'meiomiwines.com',    color:'#7b2d42', sizes:['750ml']},
-    {name:'Robert Mondavi Merlot',  sub:'Merlot · Napa Valley',      domain:'robertmondavi.com',  color:'#5c1520', sizes:['750ml','1.5L']},
-    {name:'Barefoot Merlot',        sub:'Merlot · California',       domain:'barefootwine.com',   color:'#a83232', sizes:['750ml','1.5L','3L Box']},
-    {name:'Yellow Tail Shiraz',     sub:'Shiraz · Australia',        domain:'yellowtailwine.com', color:'#8b1a1a', sizes:['750ml','1.5L']},
-    {name:'Cupcake Merlot',         sub:'Merlot · California',       domain:'cupcakewinery.com',  color:'#7d2535', sizes:['750ml','1.5L']},
-    {name:'Kendall-Jackson Pinot',  sub:'Pinot Noir · California',   domain:'kj.com',             color:'#5a1a2e', sizes:['750ml']},
-    {name:'14 Hands Red Blend',     sub:'Red Blend · Washington',    domain:'14hands.com',        color:'#6d1a36', sizes:['750ml']},
-    {name:'Bogle Phantom',          sub:'Red Blend · California',    domain:'boglewinery.com',    color:'#4a1942', sizes:['750ml']},
+  wine_brands: [
+    {name:'Barefoot Wine',          sub:'Best-Selling American Wine', domain:'barefootwine.com',   color:'#a83232', sizes:['750ml','1.5L','3L Box']},
+    {name:'Yellow Tail',            sub:'Australian Wines · Classic', domain:'yellowtailwine.com', color:'#8b1a1a', sizes:['750ml','1.5L']},
+    {name:'Kim Crawford',           sub:'New Zealand Wines',          domain:'kimcrawford.com',    color:'#1a5a2a', sizes:['750ml','1.5L']},
+    {name:'Josh Cellars',           sub:'California Wines',           domain:'joshcellars.com',    color:'#722f37', sizes:['750ml','1.5L']},
+    {name:'Apothic Wines',          sub:'Dark & Bold Blends · CA',    domain:'apothicwine.com',    color:'#6b0a2d', sizes:['750ml','1.5L']},
   ],
-  wine_white: [
-    {name:'Kim Crawford Sauvignon', sub:'Sauvignon Blanc · NZ',      domain:'kimcrawford.com',       color:'#1a5a2a', sizes:['750ml','1.5L']},
-    {name:'Kendall-Jackson Chard',  sub:'Chardonnay · California',   domain:'kj.com',                color:'#a07a10', sizes:['750ml','1.5L']},
-    {name:'Barefoot Pinot Grigio',  sub:'Pinot Grigio · California', domain:'barefootwine.com',      color:'#3a7a3a', sizes:['750ml','1.5L','3L Box']},
-    {name:'Santa Margherita',       sub:'Pinot Grigio · Italy',      domain:'santamargheritausa.com',color:'#1a5a3a', sizes:['750ml']},
-    {name:'Rombauer Chardonnay',    sub:'Chardonnay · Carneros',     domain:'rombauer.com',          color:'#9a7a30', sizes:['750ml']},
-    {name:'Chateau Ste. Michelle',  sub:'Riesling · Washington',     domain:'ste-michelle.com',      color:'#5a7820', sizes:['750ml','1.5L']},
-    {name:'Cupcake Chardonnay',     sub:'Chardonnay · California',   domain:'cupcakewinery.com',     color:'#a87a30', sizes:['750ml','1.5L']},
-    {name:'Yellow Tail Chard',      sub:'Chardonnay · Australia',    domain:'yellowtailwine.com',    color:'#b07820', sizes:['750ml','1.5L']},
-    {name:'La Marca Pinot Grigio',  sub:'Pinot Grigio · Italy',      domain:'lamarcaprosecco.com',   color:'#2a6a40', sizes:['750ml']},
-    {name:'Josh Cellars Chard',     sub:'Chardonnay · California',   domain:'joshcellars.com',       color:'#8a6a18', sizes:['750ml','1.5L']},
-  ],
-  wine_rose: [
-    {name:'Whispering Angel Rosé',  sub:'Provence Rosé · France',    domain:'whispering-angel.com', color:'#c06070', sizes:['750ml','1.5L']},
-    {name:'Meiomi Rosé',            sub:'Rosé · California',         domain:'meiomiwines.com',      color:'#c05060', sizes:['750ml']},
-    {name:'Kim Crawford Rosé',      sub:'Dry Rosé · New Zealand',    domain:'kimcrawford.com',      color:'#b84060', sizes:['750ml']},
-    {name:'Barefoot White Zin',     sub:'White Zinfandel',           domain:'barefootwine.com',     color:'#c07090', sizes:['750ml','1.5L','3L Box']},
-    {name:'Dark Horse Rosé',        sub:'Rosé · California',         domain:'darkhorsewinery.com',  color:'#b03050', sizes:['750ml']},
-    {name:'Sutter Home White Zin',  sub:'White Zinfandel',           domain:'sutterhome.com',       color:'#c07888', sizes:['750ml','1.5L']},
-    {name:'Josh Cellars Rosé',      sub:'Rosé · California',         domain:'joshcellars.com',      color:'#b84860', sizes:['750ml']},
-    {name:'Bota Box Rosé',          sub:'Rosé Box Wine · 3L',        domain:'botabox.com',          color:'#a83858', sizes:['3L Box']},
-  ],
-  wine_sparkling: [
-    {name:'Moët & Chandon Brut',    sub:'Brut Champagne · France',   domain:'moet.com',            color:'#9a7e00', sizes:['750ml','Magnum 1.5L']},
-    {name:'Veuve Clicquot Brut',    sub:'Brut Champagne · France',   domain:'veuve-clicquot.com',  color:'#c47800', sizes:['750ml','Magnum 1.5L']},
-    {name:'La Marca Prosecco',      sub:'Prosecco DOC · Italy',      domain:'lamarcaprosecco.com', color:'#4a7a30', sizes:['750ml','Magnum 1.5L']},
-    {name:'Chandon Brut California',sub:'California Sparkling',      domain:'chandon.com',         color:'#b89000', sizes:['750ml','4-Pack 187ml']},
-    {name:'Mumm Grand Cordon',      sub:'Brut Prestige · Champagne', domain:'mumm.com',            color:'#a41020', sizes:['750ml']},
-    {name:'Korbel Brut',            sub:'California Champagne',      domain:'korbel.com',          color:'#9a7000', sizes:['750ml','Magnum 1.5L']},
-    {name:'Freixenet Cordon Negro', sub:'Cava Brut · Spain',         domain:'freixenetusa.com',    color:'#1a1a1a', sizes:['750ml']},
-    {name:'Barefoot Bubbly',        sub:'Brut Rosé · California',    domain:'barefootwine.com',    color:'#c06070', sizes:['750ml','4-Pack 187ml']},
-    {name:'Cupcake Prosecco',       sub:'Prosecco · Italy',          domain:'cupcakewinery.com',   color:'#b09000', sizes:['750ml']},
-    {name:'André Brut Champagne',   sub:'Sparkling · California',    domain:'andresparkling.com',  color:'#907800', sizes:['750ml','4-Pack 187ml']},
+  wine_variety: [
+    {name:'Merlot',                 sub:'Soft · Plum · Dark Fruit',       domain:'robertmondavi.com',  color:'#5c1520', sizes:['750ml','1.5L']},
+    {name:'Cabernet Sauvignon',     sub:'Bold · Black Cherry · Oak',      domain:'joshcellars.com',    color:'#3a0a12', sizes:['750ml','1.5L']},
+    {name:'Pinot Noir',             sub:'Light · Earthy · Red Fruit',     domain:'meiomiwines.com',    color:'#7b2d42', sizes:['750ml','1.5L']},
+    {name:'Shiraz / Syrah',         sub:'Spicy · Blackberry · Bold',      domain:'yellowtailwine.com', color:'#6a0a1a', sizes:['750ml','1.5L']},
+    {name:'Red Blend',              sub:'Smooth · Complex · Layered',     domain:'apothicwine.com',    color:'#6b0a2d', sizes:['750ml','1.5L']},
+    {name:'Chardonnay',             sub:'Buttery · Oak · Tropical Fruit', domain:'kj.com',             color:'#a07a10', sizes:['750ml','1.5L']},
+    {name:'Pinot Grigio',           sub:'Crisp · Light · Citrus',         domain:'santamargheritausa.com',color:'#2a6a40',sizes:['750ml']},
+    {name:'Sauvignon Blanc',        sub:'Zesty · Herbal · Grapefruit',    domain:'kimcrawford.com',    color:'#1a5a2a', sizes:['750ml','1.5L']},
+    {name:'Riesling',               sub:'Sweet · Floral · Stone Fruit',   domain:'ste-michelle.com',   color:'#5a7820', sizes:['750ml','1.5L']},
+    {name:'Rosé',                   sub:'Dry · Strawberry · Provence',    domain:'whispering-angel.com',color:'#c06070',sizes:['750ml','1.5L']},
+    {name:'Prosecco',               sub:'Sparkling · Italian · Brut',     domain:'lamarcaprosecco.com',color:'#4a7a30', sizes:['750ml','Magnum 1.5L']},
+    {name:'Champagne',              sub:'Brut · French · Celebratory',    domain:'moet.com',           color:'#9a7e00', sizes:['750ml','Magnum 1.5L']},
+    {name:'Moscato',                sub:'Sweet · Peach · Light Fizz',     domain:'barefootwine.com',   color:'#c8a030', sizes:['750ml','1.5L']},
   ],
   whiskey: [
     {name:"Jack Daniel's Old No.7", sub:'Tennessee Whiskey',          domain:'jackdaniels.com',        color:'#111111', sizes:['375ml Pint','750ml','1L','1.75L'],   localImg:'images/whiskey/jack_daniel_bottle.webp'},
@@ -350,14 +326,12 @@ const MAIN_TABS = [
   {key:'shots',         label:'🥂 Shots & Margs'},
 ];
 const WINE_TABS = [
-  {key:'wine_red',       label:'🔴 Red Wine'},
-  {key:'wine_white',     label:'⬜ White Wine'},
-  {key:'wine_rose',      label:'🌸 Rosé'},
-  {key:'wine_sparkling', label:'🥂 Sparkling & Champagne'},
+  {key:'wine_brands',  label:'🏆 Top Brands'},
+  {key:'wine_variety', label:'🍇 Shop by Variety'},
 ];
 
 let activeMain = 'beer';
-let activeWine = 'wine_red';
+let activeWine = 'wine_brands';
 
 /* ── KC TIME ─────────────────────────────────────────────── */
 function getKCTime() {
@@ -467,10 +441,8 @@ const CAT_BANNER_IMG = {
   gin:     'https://images.unsplash.com/photo-1608270586620-248524c67de5?auto=format&fit=crop&w=900&q=80',
   seltzer: 'https://images.unsplash.com/photo-1485824890521-7ef09b2d89c7?auto=format&fit=crop&w=900&q=80',
   shots:   'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=80',
-  wine_red:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80',
-  wine_white:'https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=900&q=80',
-  wine_rose:'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80',
-  wine_sparkling:'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=80',
+  wine_brands:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80',
+  wine_variety:'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80',
 };
 
 function updateCatBanner(key){
